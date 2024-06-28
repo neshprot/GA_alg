@@ -27,7 +27,7 @@ positionsset = {int(x) for x in config['PARAMS']['PositionsSet'].split()}
 stop_step = int(config['PARAMS']['StopStep'])
 attempts = int(config['PARAMS']['Attempts'])
 use_computed = config.getboolean('PARAMS', 'UseComputed')
-logger = FileLogger("logout")
+logger = FileLogger(result_file_name)
 
 # GENERATING CONSTRAINTS
 constraints = Constraints()
