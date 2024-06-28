@@ -26,8 +26,8 @@ result_file_name = config['COMPUTING']['ResultFileName']
 positionsset = {int(x) for x in config['PARAMS']['PositionsSet'].split()}
 stop_step = int(config['PARAMS']['StopStep'])
 attempts = int(config['PARAMS']['Attempts'])
-start_value = float(config['PDB']['StartValue'])
-
+print(config['PARAMS']['UseComputed'])
+use_computed = config.getboolean('PARAMS', 'UseComputed')
 logger = FileLogger("logout")
 
 # GENERATING CONSTRAINTS
@@ -51,13 +51,12 @@ population = ProteinEvolution(population=None, mut_prob=mut_prob, mut_num=mut_nu
                               logger=logger, checker=constraints, weights=weights, positionsset=positionsset)
 population.load_computed_proteins()
 max_num_changes = population.generate_population(default_sequence=sequence, default_descriptors=descriptors,
-                               pop_size=pop_size, from_computed=True)
+                               pop_size=pop_size, from_computed=use_computed)
 
 ini_step = 1
 sets, pulls, probs, consts = read_replacements('sites')
 iteration, step = max_num_changes + 1, 0
 
-the_best_value = start_value
 best_protein = population.get_best_protein()
 # основной цикл эволюции
 while step < stop_step:
