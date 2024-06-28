@@ -26,7 +26,6 @@ result_file_name = config['COMPUTING']['ResultFileName']
 positionsset = {int(x) for x in config['PARAMS']['PositionsSet'].split()}
 stop_step = int(config['PARAMS']['StopStep'])
 attempts = int(config['PARAMS']['Attempts'])
-print(config['PARAMS']['UseComputed'])
 use_computed = config.getboolean('PARAMS', 'UseComputed')
 logger = FileLogger("logout")
 
