@@ -240,9 +240,6 @@ class ProteinEvolution(Evolution, BaseFunction):
                 ouf.write("\n")
         os.rename(".tempfile", self._output_file)
 
-        with open(self._output_file, "r") as inf, open(self._input_file, 'w') as ouf:
-            for line in inf:
-                ouf.write(f'{random.random()} {random.random()} {random.random()}\n')
         # Wait results
         while not os.path.exists(self._input_file):
             time.sleep(1)
